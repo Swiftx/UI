@@ -7,6 +7,8 @@ jQuery(document).ready(function() {
 // 对象应用
 var app = angular.module("system-admin",['ngRoute']);
 
+
+
 // 配置路由规则
 app.config(['$routeProvider', function($routeProvider){
 
@@ -80,6 +82,26 @@ app.config(['$routeProvider', function($routeProvider){
     });
 
 }]);
+
+app.directive('editor', function () {
+    return {
+        restrict : "E",
+        link : function (scope, element, attrs, ctrl) {
+            switch(attrs.driver){
+                case 'ueditor': return this.initUeditor(scope, element, attrs, ctrl);
+            }
+        },
+        initUeditor : function (scope, element, attrs, ctrl) {
+            var id = 'editor-' + Date.now();
+            element[0].id = id;
+            var ue = UE.getEditor(id, {
+                initialFrameWidth: '100%',
+                initialFrameHeight: '300',
+                autoHeightEnabled: true
+            });
+        }
+    };
+});
 
 // 主页控制器
 app.controller('MainPage', function ($scope) {
