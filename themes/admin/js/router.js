@@ -25,6 +25,18 @@ app.config(['$routeProvider', function($routeProvider){
         controller  : 'SettingPage'
     });
 
+    // 自定义导航路由
+    $routeProvider.when('/navigation',{
+        templateUrl : 'navigation-list.html',
+        controller  : 'NavigationListPage'
+    });
+
+    // 自定义导航路由
+    $routeProvider.when('/navigation-new',{
+        templateUrl : 'navigation-edit.html',
+        controller  : 'NavigationNewPage'
+    });
+
     // 独立页面路由
     $routeProvider.when('/independent',{
         templateUrl : 'independent-list.html',
@@ -80,6 +92,22 @@ app.controller('MainPage', function ($scope) {
 app.controller('SettingPage', function ($scope) {
     Layout.fixContentHeight();
     Layout.setSidebarMenuActiveLink('match');
+});
+
+// 自定义导航控制器
+app.controller('NavigationListPage', function ($scope) {
+    Layout.fixContentHeight();
+    Layout.setSidebarMenuActiveLink('match');
+});
+
+// 自定义导航控制器
+app.controller('NavigationNewPage', function ($scope) {
+    Layout.fixContentHeight();
+    Layout.setSidebarMenuActiveLink('match');
+    $scope.page = {
+        title       : '新增导航',
+        title_small : 'new navigation'
+    };
 });
 
 // 独立页管理控制器
